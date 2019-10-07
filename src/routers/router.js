@@ -6,12 +6,18 @@ const mongoose = require('mongoose');
 router.post('/', (req,res)=>{
     const event = new Event();
     try {
+        console.log(req.body);
         event.teamName = req.body.teamName;
         event.collegeName = req.body.collegeName;
         event.mailId = req.body.mailId;
         event.mobileNumber = req.body.mobileNumber;
         event.teamMembersName = req.body.teamMembersName;
-        event.events = req.body.events;
+
+        
+        var data2 = req.body.events; 
+        console.log(typeof data2)
+        data2.forEach((eve) => event.events.eve = data.eve); //error
+
         event.transport = req.body.transport;
         event.arrivalDate = req.body.arrivalDate;
         event.departureDate = req.body.departureDate;
