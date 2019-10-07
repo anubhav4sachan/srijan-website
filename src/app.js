@@ -1,7 +1,13 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const exphbs = require('express-handlebars');
+const mongoose = require('mongoose');
 
+mongoose.connect('mongodb://localhost:27017/EventRegister',{
+    useNewUrlParser:true,
+    useUnifiedTopology:true
+});
 
 const router = require('./routers/router')
 
@@ -13,14 +19,21 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json())
 
-app.set('view engine','ejs');
+app.set('view engine','hbs');
+
 const publicDirectoryPath = path.join(__dirname,'../public')
-
-const port = process.env.PORT || 3000
-
 app.use(express.static(publicDirectoryPath))
 
-app.use('/register',router)
+app.set('views',path.join(__dirname,'../views'));
+app.engine('hbs',exphbs({
+    extname: 'hbs',
+    defaultLayout: 'mainLayout.hbs',
+    layoutsDir: __dirname + '../../views/layout/'
+}));
+ 
+const port = process.env.PORT || 3000
+
+app.use('/event',router)
 
 
 
