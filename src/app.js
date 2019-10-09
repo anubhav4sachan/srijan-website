@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/EventRegister',{
+mongoose.connect('mongodb://localhost:27017/Register',{
     useNewUrlParser:true,
     useUnifiedTopology:true
 });
@@ -33,7 +33,7 @@ app.engine('hbs',exphbs({
  
 const port = process.env.PORT || 3000
 
-app.use('/event',router)
+app.use('/register',router)
 
 
 

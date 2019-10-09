@@ -1037,7 +1037,7 @@ textarea::-webkit-scrollbar {
   border:none;
   border-bottom:1px solid #ffd;
   outline:none;
-  background: transparent !important;
+  background: transparent;
 
 }
 textarea::placeholder{

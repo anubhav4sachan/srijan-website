@@ -22,12 +22,12 @@ const eventSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    events:[{
-        event:{
-            type:String,
-            required:true
+    events:[
+        {
+            required:true,
+            type:String
         }
-    }],
+    ],
     transport: {
         type:String,
         required:true
