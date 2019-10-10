@@ -43,6 +43,9 @@ const eventSchema = new mongoose.Schema({
     transportDetails:{
         type:String,
         required:true
+    },
+    accomodation:{
+        type:Boolean
     }
 });
 

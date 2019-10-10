@@ -1,8 +1,8 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
+const hbs = require('hbs');
 
 mongoose.connect('mongodb://localhost:27017/Register',{
     useNewUrlParser:true,
@@ -19,17 +19,20 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json())
 
-app.set('view engine','hbs');
-
 const publicDirectoryPath = path.join(__dirname,'../public')
+const partialsPath = path.join(__dirname,'../template/partials')
+
+app.set('view engine','hbs');
+app.set('views',path.join(__dirname,'../template/views'));
+
 app.use(express.static(publicDirectoryPath))
 
-app.set('views',path.join(__dirname,'../views'));
-app.engine('hbs',exphbs({
-    extname: 'hbs',
-    defaultLayout: 'mainLayout.hbs',
-    layoutsDir: __dirname + '../../views/layout/'
-}));
+
+// app.engine('hbs',exphbs({
+//     extname: 'hbs',
+//     defaultLayout: 'mainLayout.hbs',
+//     layoutsDir: __dirname + '../../views/layout/'
+// }));
  
 const port = process.env.PORT || 3000
 

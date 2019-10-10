@@ -28,7 +28,7 @@ router.get('/event/list',(req,res)=>{
     Event.findOne({_id:id},(err,docs)=>{
         if(!err){
             console.log(docs);
-            res.render("event/list",{  //its a view page 
+            res.render("eventList",{  //its a view page 
                 list:docs
             })  //this is rendering the views while redirect lets us to a new url
         }
@@ -58,7 +58,7 @@ router.get('/workshop/list',(req,res)=>{
     Workshop.findOne({_id:id},(err,docs)=>{
         if(!err){
             console.log(docs);
-            res.render("workshop/list",{  //its a view page 
+            res.render("workshopList",{  //its a view page 
                 list:docs
             })  //this is rendering the views while redirect lets us to a new url
         }
