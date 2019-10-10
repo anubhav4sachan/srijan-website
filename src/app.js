@@ -20,7 +20,6 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 
 const publicDirectoryPath = path.join(__dirname,'../public')
-const partialsPath = path.join(__dirname,'../template/partials')
 
 app.set('view engine','hbs');
 app.set('views',path.join(__dirname,'../template/views'));
@@ -28,12 +27,7 @@ app.set('views',path.join(__dirname,'../template/views'));
 app.use(express.static(publicDirectoryPath))
 
 
-// app.engine('hbs',exphbs({
-//     extname: 'hbs',
-//     defaultLayout: 'mainLayout.hbs',
-//     layoutsDir: __dirname + '../../views/layout/'
-// }));
- 
+
 const port = process.env.PORT || 3000
 
 app.use('/register',router)
