@@ -10,6 +10,7 @@ mongoose.connect('mongodb://localhost:27017/Register',{
 });
 
 const router = require('./routers/router')
+const paytmRouter = require('./routers/paytmRouter')
 
 const app = express() 
 app.use(express.json())
@@ -31,6 +32,7 @@ app.use(express.static(publicDirectoryPath))
 const port = process.env.PORT || 3000
 
 app.use('/register',router)
+app.use('/paytmPath',paytmRouter)
 
 
 

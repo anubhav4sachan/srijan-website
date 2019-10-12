@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +7,9 @@
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 	<title>SRiJaN1.0</title>
+
+	<link rel="icon" href="docsupport/bulb6-slow.gif" type="image/gif" sizes="16x16">
+
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700,900" rel="stylesheet">
@@ -74,7 +75,7 @@
                     <li><a href="../../index.html#events">Events</a></li>
 					<li><a href="../../index.html#speakers">Speakers</a></li>
 					<li  class="active"><a href="../../form.html">Register</a></li>
-                    <li><a href="../../team.html">Teams</a>
+                    <li><a href="../../team.html">Team</a>
                     <li><a href="../../index.html#contact">Contact</a></li>
 				</ul>
 			</nav>
@@ -118,9 +119,10 @@
 	<section>
 		<div class="container">
 			<div class="row">
-				{{!-- <div class="section-title">
-					<h3 class="title"><span>Your</span> <span style="color: #dd0a37;">Details</span></h3>
-				</div> --}}
+				<div class="section-title">
+					<h3 class="title"><span>Workshop Form</span> <span style="color: #dd0a37;">Details</span></h3>
+					<br>
+				</div>
 			</div>
 
 			<div class="col-md-8 col-md-offset-2 ">
@@ -130,11 +132,12 @@
 					<h3 class="title"><span>College Name : </span> <span style="color: #dd0a37;">{{list.collegeName}}</span></h3>
 					<h3 class="title"><span>Email Id : </span> <span style="color: #dd0a37;">{{list.mailId}}</span></h3>
 					<h3 class="title"><span>Mobile Number : </span> <span style="color: #dd0a37;">{{list.mobileNumber}}</span></h3>
+					<h3 class="title"><span>Event Fees : </span> <span style="color: #dd0a37;">Rs 350</span></h3>
+
                     <div style="text-align: center;margin-top:4vh">
 						<p style="margin-bottom:4vh;font-size:20px">Check the details and click on pay button</p>
-						<button type="button" class="btn btn-primary" >Pay With Paytm</button>
+						<button type="button" class="btn btn-primary"><a href="../../paytm.html" style="text-decoration: none;">Pay With Paytm</a></button>
 					</div>
-                    {{!-- <button ><a href="../../form.html">Change Details</a></button> --}}	
 				</div>
 			</div>
 			

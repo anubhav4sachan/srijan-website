@@ -985,10 +985,10 @@ changes */
 
 .box{
   position: absolute;
-  top:50%;
-  left:56%;
+  top:3vh;
+  left:50%;
   transform: translate(-50%,-50%);
-  width:55vh;
+  width:53vh;
   height:80vh;
   padding:40px;
   padding-bottom: 10vh;
@@ -1090,6 +1090,7 @@ input:focus::placeholder{
   cursor: pointer;
   border-radius: 5px;
 }
+
 
 /*=========================================================
 	RESPONSIVE

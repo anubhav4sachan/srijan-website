@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const validator = require('validator')
 
 const eventSchema = new mongoose.Schema({
     teamName: {
@@ -12,7 +13,12 @@ const eventSchema = new mongoose.Schema({
     },
     mailId:{
         type:String,
-        required:true
+        required:true,
+        validate(value) {
+            if(!validator.isEmail(value)){
+                throw new Error('Email is invalid')
+            }
+        }  
     },
     mobileNumber:{
         type:Number,
