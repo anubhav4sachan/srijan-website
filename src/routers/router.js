@@ -31,7 +31,9 @@ router.get('/event/list',(req,res)=>{
             console.log(docs);
             res.render("eventList",{  //its a view page 
                 list:docs
-            })  //this is rendering the views while redirect lets us to a new url
+            })  
+        }else{
+            res.redirect('error')
         }
     })
 })
@@ -62,6 +64,9 @@ router.get('/workshop/list',(req,res)=>{
             res.render("workshopList",{  //its a view page 
                 list:docs
             })  //this is rendering the views while redirect lets us to a new url
+        }
+        else{
+            res.redirect('error')
         }
     })
 })

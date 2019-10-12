@@ -31,7 +31,7 @@ PaytmRouter.post('/generate_checksum',(req,res)=>{
         })
     } catch (error) {
         console.log("error : ",error);
-        
+        res.redirect('error');  
     }
 
 })
@@ -64,8 +64,7 @@ PaytmRouter.post('/verify_checksum',(req,res)=>{
                     doc:data
                 }) 
             }else{
-                res.send(err)
-            }
+                res.redirect('error')            }
         })
     } else {
         console.log("Checksum Mismatched");
