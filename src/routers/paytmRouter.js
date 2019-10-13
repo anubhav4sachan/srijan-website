@@ -7,6 +7,8 @@ var paytm_checksum = require('../paytm/checksum');
 
 const CbInput = require('../models/cbInput');
 const StartInput = require('../models/startInput');
+const Event = require('../models/event');
+const Workshop = require('../models/workshop');
 const mongoose = require('mongoose');
 
 
@@ -60,9 +62,29 @@ PaytmRouter.post('/verify_checksum',(req,res)=>{
         cbInput.save((err,data)=>{
             console.log(data)
             if(!err){
-                res.render('success',{
-                    doc:data
-                }) 
+                StartInput.findOne({ORDER_ID:data.ORDERID},(err,docs)=>{
+                    if(!err&&docs.TXN_AMOUNT==data.TXNAMOUNT){
+                        if(data.TXNAMOUNT===1000){
+                            if(Event.updateTransactionId(docs.EMAIL, data.BANKTXNID)){
+                                res.render('success',{
+                                    doc:data
+                                });
+                            }
+                        
+                        }
+                        else if(data.TXNAMOUNT===350){
+                            if(Workshop.updateTransactionId(docs.EMAIL, data.BANKTXNID)){
+                                res.render('success',{
+                                    doc:data
+                                });
+                            }
+                        }
+                    }
+                    else{
+                        res.render('error')
+                    }
+                })
+                
             }else{
                 res.redirect('error')            }
         })

@@ -14,6 +14,7 @@ const eventSchema = new mongoose.Schema({
     mailId:{
         type:String,
         required:true,
+        unique: true,
         validate(value) {
             if(!validator.isEmail(value)){
                 throw new Error('Email is invalid')
@@ -52,8 +53,27 @@ const eventSchema = new mongoose.Schema({
     },
     accomodation:{
         type:Boolean
+    },
+    transactionID:{
+        type: String,
+        default: null
     }
 });
+
+eventSchema.statics.updateTransactionId=function(mailId,transactionID){
+    if(transactionID){
+        return Event.findOne({mailId}, (err, event)=>{
+            if(!err){
+                event.transactionID=transactionID;
+                event.save((err, data)=>{
+                    if(!err){
+                        return data;
+                    }
+                })
+            }
+        })
+    }
+};
 
 const Event = mongoose.model('Event',eventSchema);
 module.exports = Event;
