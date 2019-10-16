@@ -37,7 +37,7 @@ router.get('/event/list',(req,res)=>{
                 CUSTID : 'CUST'+Date.now(),
                 MID : paytm_config.MID,                   
             };
-            console.log(docs);
+            console.log('LIST', list);
             res.render("eventList",{  //its a view page 
                 list
             })  
@@ -56,9 +56,10 @@ router.post('/workshop',(req,res)=> {
             console.log("data : ",data);
             if(!err){
                 res.redirect('workshop/list?id=' + data._id)
-            }else{
-                res.redirect('error')
-            }
+            }res.render('error',{
+                errorMsg:'Wrong Input Found',
+                errorCode: 0
+            })
         })
     } catch (error) {
         console.log('error during insert operation : ' + error);
@@ -115,7 +116,9 @@ router.get('/getAllWorkshops/9123421208',(req,res)=>{
 });
 
 router.get('/error',(req,res)=>{
-    res.render('error')
+    res.render('error',{
+        errorCode: 4
+    })
 })
 
 
