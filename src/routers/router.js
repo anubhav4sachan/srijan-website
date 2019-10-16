@@ -4,6 +4,7 @@ const router = express.Router();
 const Event = require('../models/event');
 const Workshop = require('../models/workshop');
 const mongoose = require('mongoose');
+var paytm_config = require('../paytm/paytm_config').paytm_config;
 
 router.post('/event', (req,res)=>{
     const event = new Event(req.body);
@@ -31,7 +32,8 @@ router.get('/event/list',(req,res)=>{
             const list = {
                 ...docs._doc,
                 ORDERID: 'ORDER'+Date.now(),
-                CUSTID : 'CUST'+Date.now()                    
+                CUSTID : 'CUST'+Date.now(),
+                MID : paytm_config.MID,                   
             };
             console.log(docs);
             res.render("eventList",{  //its a view page 
@@ -49,7 +51,7 @@ router.post('/workshop',(req,res)=> {
     try {
         console.log(req.body);
         workshop.save((err,data)=>{
-            console.log(data);
+            console.log("data : ",data);
             if(!err){
                 res.redirect('workshop/list?id=' + data._id)
             }else{
@@ -68,12 +70,13 @@ router.get('/workshop/list',(req,res)=>{
             const list = {
                 ...docs._doc,
                 ORDERID: 'ORDER'+Date.now(),
-                CUSTID : 'CUST'+Date.now()                    
+                CUSTID : 'CUST'+Date.now(),
+                MID : paytm_config.MID,                  
             };
             console.log("docs : ",list);
             res.render("workshopList",{  //its a view page 
                 list
-            })  //this is rendering the views while redirect lets us to a new url
+            })  
         }
         else{
             res.redirect('error')
