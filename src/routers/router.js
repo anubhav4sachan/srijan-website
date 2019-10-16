@@ -15,7 +15,9 @@ router.post('/event', (req,res)=>{
             if(!err){
                 res.redirect('event/list?id=' + data._id)
             }else{
-                res.redirect('error')
+                res.render('error',{
+                    errorMsg:'Wrong Input Found'
+                })
             }
         });    
     } catch (error) {
@@ -113,9 +115,7 @@ router.get('/getAllWorkshops/9123421208',(req,res)=>{
 });
 
 router.get('/error',(req,res)=>{
-    res.render('error',{
-        errorMsg:'Wrong Input Found'
-    })
+    res.render('error')
 })
 
 
