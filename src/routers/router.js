@@ -113,7 +113,9 @@ router.get('/getAllWorkshops/9123421208',(req,res)=>{
 });
 
 router.get('/error',(req,res)=>{
-    res.render('error')
+    res.render('error',{
+        errorMsg:'Wrong Input Found'
+    })
 })
 
 
