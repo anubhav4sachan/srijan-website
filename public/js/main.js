@@ -12,6 +12,11 @@
 		$('.main-nav').toggleClass('open');
 	});
 
+	
+	$('.main-nav li').on('click',function() {
+		$('.main-nav').removeClass('open');
+	});
+
 	// Fixed nav
 	$(window).on('scroll', function() {
 		var wScroll = $(this).scrollTop();

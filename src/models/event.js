@@ -21,6 +21,10 @@ const eventSchema = new mongoose.Schema({
             }
         }  
     },
+    teamNumber:{
+        required:true,
+        type:Number
+    },
     mobileNumber:{
         type:Number,
         required:true

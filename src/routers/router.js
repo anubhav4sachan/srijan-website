@@ -109,5 +109,9 @@ router.get('/getAllWorkshops/9123421208',(req,res)=>{
     });
 });
 
+router.get('/error',(req,res)=>{
+    res.render('error')
+})
+
 
 module.exports = router;

@@ -72,7 +72,7 @@ PaytmRouter.post('/verify_checksum',(req,res)=>{
                             }
                         
                         }
-                        else if(data.TXNAMOUNT===350){
+                        else if(data.TXNAMOUNT===350||data.TXNAMOUNT===10){
                             if(Workshop.updateTransactionId(docs.EMAIL, data.BANKTXNID)){
                                 res.render('success',{
                                     doc:data
