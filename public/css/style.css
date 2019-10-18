@@ -1134,6 +1134,105 @@ input:focus::placeholder{
   .event+.event:before {
     left: 45px;
   }
+
+  /*----------------------------*\
+	Speaker Modal
+\*----------------------------*/
+
+.speaker-modal .modal-dialog {
+  width: 100%;
+  max-width: 970px;
+  margin-top: 120px;
+  margin-bottom: 60px;
+}
+
+.speaker-modal .modal-content {
+  border: none;
+  border-radius: 2px;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.speaker-modal .speaker-modal-close {
+  position: absolute;
+  right: 5px;
+  top: -15px;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  background-color: #dd0a37 !important;
+  border-radius: 50%;
+  padding: 0;
+  color: #FFF;
+  border: none;
+  font-size: 24px;
+  z-index: 50;
+}
+
+.speaker-modal .speaker-modal-close:after {
+  content: "\f00d";
+  font-family: FontAwesome;
+}
+
+.speaker-modal .modal-body {
+  padding: 30px;
+}
+
+.speaker-modal .speaker-modal-img>img {
+  width: 95%;
+}
+
+.speaker-modal .speaker-modal-content .speaker-name {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.speaker-modal .speaker-modal-content .speaker-job {
+  color: #dd0a37;
+}
+
+.speaker-modal .speaker-modal-content .speaker-social {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.speaker-modal .speaker-modal-content .speaker-social>a {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 50%;
+  background: #dd0a37;
+  color: #fff;
+  margin-right: 5px;
+  -webkit-transition: 0.3s opacity;
+  transition: 0.3s opacity;
+}
+
+.speaker-modal .speaker-modal-content .speaker-social>a:hover {
+  opacity: 0.8;
+}
+
+.speaker-modal .speaker-modal-content .speaker-website {
+  margin-top: 30px;
+}
+
+.speaker-modal .speaker-modal-content .speaker-events .speaker-event+.speaker-event {
+  margin-top: 30px;
+}
+
+.speaker-modal .speaker-modal-content .speaker-events .speaker-event>span {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.speaker-modal .speaker-modal-content .speaker-events .speaker-event>span strong {
+  color: #dd0a37;
+}
 }
 
 @media only screen and (max-width: 480px) {
