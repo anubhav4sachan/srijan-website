@@ -988,7 +988,7 @@ changes */
   top:3vh;
   left:50%;
   transform: translate(-50%,-50%);
-  width:49vh;
+  width:51vh;
   height:80vh;
   padding:40px;
   padding-bottom: 10vh;
@@ -1238,5 +1238,21 @@ input:focus::placeholder{
 @media only screen and (max-width: 480px) {
   [class*='col-xs'] {
     width: 100%;
+  }
+  .box{
+      position: absolute;
+      top:3vh;
+      left:50%;
+      transform: translate(-50%,-50%);
+      width:47vh;
+      height:80vh;
+      padding:40px;
+      padding-bottom: 10vh;
+      margin-top:5vh;
+      background: rgba(0,0,0,0.6);
+      box-sizing: border-box;
+      box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+      border-radius: 1.2vh;
+      overflow-y:scroll;
   }
 }
