@@ -105,7 +105,7 @@ router.post('/checkEvent',(req,res)=> {
 
 router.get('/getAllEvents/9123421208',(req,res)=>{
     Event.find((err, data)=>{
-    res.send(data);
+        res.send(data);
     });
 });
 
@@ -121,5 +121,25 @@ router.get('/error',(req,res)=>{
     })
 })
 
+router.get('/view/events', (req, res)=> {
+    Event.find((err, data)=>{
+        res.render('displayrecords', {
+            event: true,
+            encodedData: encodeURIComponent(JSON.stringify(data)),
+            options:['Pitching Competition', 'Business Model Canvas Competition', 'Business Quiz Competition', 'Board Room', 'Intern Fair', 'Bonfire Chat', 'IPL Auction']
+        })
+    });
+});
+
+
+router.get('/view/workshops', (req, res)=> {
+    Workshop.find((err, data)=>{
+        res.render('displayrecords', {
+            event: false,
+            encodedData: encodeURIComponent(JSON.stringify(data)),
+            options:['']
+        })
+    });
+});
 
 module.exports = router;

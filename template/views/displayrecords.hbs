@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>SRIJAN | NIT SILCHAR</title>
+
+	<link rel="icon" href="docsupport/bulb6-slow.gif" type="image/gif" sizes="16x16">
+
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700,900" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" />
+
+	<!-- Owl Carousel -->
+	<link type="text/css" rel="stylesheet" href="/css/owl.carousel.css" />
+	<link type="text/css" rel="stylesheet" href="/css/owl.theme.default.css" />
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/styles.css">
+	<link type="text/css" rel="stylesheet" href="/css/loader.css" />
+
+	
+	<!--[if lt IE 9]>
+			  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+			  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+			<![endif]-->
+
+		<style>
+			.drop-shadow{
+				-webkit-box-shadow: 0px 1px 4px 1px rgba(0,0,0,0.4); 
+				box-shadow: 0px 1px 4px 1px rgba(0,0,0,0.4);
+				padding: 1%;
+				min-height: 300px;
+				max-width: 90%;
+				max-height: 90%;
+				border: 0px;
+			}
+			.drop-shadow > table{
+				margin-top: 2%;
+			}
+		</style>
+</head>
+<body>
+
+  <div class="preloader"><span class="preloader-gif"></span></div>
+  <div class="container-fluid drop-shadow" style="margin-top: 20px;">
+		<div class="row text-center">
+			<div class="col-md-6">Do Not Show Fee Defaulter<input type="checkbox" name="fee_paid" id="fee_paid" style="margin-left: 10px;"></div>
+			<div class="col-md-6">
+				Filter: 
+				<select id="eventSelect"  style="margin-left: 10px;">
+					<option value="">Select One</option>
+					{{#each options}}
+						<option value="{{this}}">{{this}}</option>
+					{{/each}}
+				</select>
+			</div>
+		</div>
+
+		
+
+		<table class="table table-stripped">
+    <thead>
+      <tr>
+        <th>Team Name</th>
+        <th>Email</th>
+        <th>Mobile Number</th>
+        <th>Fee Paid</th>
+        
+        <th>Arrival Date</th>
+        <th>Departure Date</th>
+        <th>College Name</th>
+				<th>Events/Workshops</th>
+      </tr>
+    </thead>
+			<tbody id="tbody">
+    </tbody>
+  </table>  
+
+	</div>
+<!-- Footer -->
+	<footer id="footer">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+	
+					<!-- footer logo -->
+					<div class="col-md-4 col-md-push-4">
+						<div class="footer-brand">
+							<a class="logo" href="../../index.html">
+								<img class="logo-img" src="/img/E-CELL 1.png"width="240px"height="100px" alt="logo">
+							</a>
+						</div>
+					</div>
+					<!-- /footer logo -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</footer>
+        <!-- /Footer -->
+
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery.waypoints.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/jquery.stellar.min.js"></script>
+	<script src="/js/jquery.countTo.js"></script>
+  <script src="/js/main.js"></script>
+	<script src="/js/handlebars-v4.4.3.js"></script>
+  <script src = "/js/loader.js"></script>
+  <script>
+
+		const dataArr = JSON.parse(decodeURIComponent("{{{encodedData}}}"));
+    $(window).on("load",function(){
+      $(".loader-wrapper").fadeOut("slow");
+			$("#fee_paid").on('change', ()=>{
+				viewList();
+			});
+			$('#eventSelect').on('change', (event)=>{
+				viewList();
+			});
+			viewList();
+			
+    });
+		function viewList(){
+
+			const html = dataArr.map((data)=>{
+				const dropDownValue = $('#eventSelect').val();
+
+				if(!data.events || (dropDownValue==="" || data.events.indexOf(dropDownValue)>-1)){
+
+					if($('input[name=fee_paid]:checked').length > 0){
+						if(data.transactionID){
+							return templateList(data)
+						}
+					}
+					else{
+						return templateList(data);
+					}
+				}
+
+			});
+			$('#tbody').html(html);
+		}
+		function templateList(data){
+			return(`
+			<tr>
+			<td>${data.teamName || data.name}</td>
+			<td>${data.mailId}</td>
+			<td>${data.mobileNumber}</td>
+			<td>${data.transactionID ? data.transactionID : '<span style="color:#dd0a37;">Not Paid</span>'}</td>
+			<td> ${data.arrivalDate || '-'} </td>
+			<td>${data.departureDate || '-'}</td>
+			<td>${data.collegeName}</td>
+			<td><ul >
+				${(data.events && data.events.map((event)=>{
+					return `<li>${event}</li>`;
+				}).join('')) || 'Workshop'}
+				</ul></td>
+			</tr>`);
+		}
+
+	</script>
+
+</body>
+
+</html>
+
+
