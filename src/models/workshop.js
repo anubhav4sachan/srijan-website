@@ -13,7 +13,6 @@ const workshopSchema = new mongoose.Schema({
     mailId:{
         type:String,
         required:true,
-        unique:true
     },
     mobileNumber:{
         type:Number,
