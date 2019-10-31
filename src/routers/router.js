@@ -30,12 +30,22 @@ router.post('/event', (req,res)=>{
 router.get('/event/list',(req,res)=>{
     let id = req.query.id;
     Event.findOne({_id:id},(err,docs)=>{
+        console.log(docs._doc);
         if(!err){
+            let fee = 0;
+            if(docs._doc.events.indexOf('IPL Auction') > -1 || docs._doc.events.indexOf('Business Quiz Competition') > -1){
+                fee=100;
+            }
+            else{
+                fee=300;
+            }
             const list = {
                 ...docs._doc,
                 ORDERID: 'ORDER'+Date.now(),
                 CUSTID : 'CUST'+Date.now(),
-                MID : paytm_config.MID,                   
+                MID : paytm_config.MID,
+                fee
+
             };
             console.log('LIST', list);
             res.render("eventList",{  //its a view page 
